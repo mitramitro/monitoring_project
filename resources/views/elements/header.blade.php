@@ -1,0 +1,27 @@
+<!--**********************************
+    Header start
+***********************************-->
+<div class="header">
+    <div class="header-content">
+        <nav class="navbar navbar-expand">
+            <div class="collapse navbar-collapse justify-content-between">
+                <div class="header-left">
+                    <div class="dashboard_bar">
+                        @yield('title', $page_title ?? '')
+                    </div>
+                </div>
+                <ul class="navbar-nav header-right">
+
+                    <li class="nav-item dropdown notification_dropdown">
+                        <a class="nav-link bell dz-theme-mode p-0" href="javascript:void(0);">
+                            <i id="icon-light" class="fas fa-sun"></i>
+                            <i id="icon-dark" class="fas fa-moon"></i>
+
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
