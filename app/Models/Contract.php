@@ -16,6 +16,8 @@ class Contract extends Model
         'budget',
         'job_title',
         'company_id',
+        'latitude',
+        'longitude',
         'status',
     ];
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
 
             // role: mps = admin, vendor = user biasa
-            $table->enum('role', ['mps', 'vendor'])->default('vendor');
+            $table->enum('role', ['mps', 'vendor', 'display'])->default('vendor');
 
             // vendor terhubung ke perusahaan
             $table->foreignId('company_id')->nullable()

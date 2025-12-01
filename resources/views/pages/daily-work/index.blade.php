@@ -19,10 +19,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <a href="{{ route('daily-work.create') }}" class="btn btn-primary mb-4 float-end">
-                                <i class="fas fa-plus-circle"></i>
-                                Add Daily Work
-                            </a>
+                            @if(auth()->check() && auth()->user()->role === 'mps')
+                                <a href="{{ route('daily-work.create') }}" class="btn btn-primary mb-3">
+                                    Add Daily Work
+                                </a>
+                            @endif
                         </div>
                     </div>
 
@@ -32,7 +33,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Date</th>
-                                    <th>Username</th>
+                                    {{-- <th>Username</th> --}}
                                     <th>Note</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -42,7 +43,7 @@
                                 <tr>
                                    <th>No</th>
                                     <th>Date</th>
-                                    <th>Username</th>
+                                    {{-- <th>Username</th> --}}
                                     <th>Note</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -90,11 +91,11 @@
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'date', name: 'date' },
-            { data: 'username', name: 'username' },
+            // { data: 'username', name: 'username' },
             { data: 'note', name: 'note' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
-        columnDefs: [{ width: '22%', targets: 4 }],
+        columnDefs: [{ width: '22%', targets: 3 }],
         language: {
             paginate: {
                 next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',

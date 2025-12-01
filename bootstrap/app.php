@@ -11,7 +11,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // ALIAS MIDDLEWARE DEFAULT LARAVEL (DIBUTUHKAN UNTUK auth, guest, verified)
+        // $middleware->alias([
+        //     'auth' => \App\Http\Middleware\Authenticate::class,
+        //     'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        //     'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // ]);
+
+        // ALIAS CUSTOM KAMU
+        $middleware->alias([
+            'displayOnly' => \App\Http\Middleware\EnsureDisplayUser::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('company_id')
                 ->constrained('companies')
                 ->cascadeOnDelete();
+            $table->decimal('latitude', 12, 8)->nullable();
+            $table->decimal('longitude', 12, 8)->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });

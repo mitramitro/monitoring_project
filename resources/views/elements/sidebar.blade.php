@@ -34,7 +34,7 @@
             </li>
 
             <li>
-                <a class="" {{ Request::segment(1)=='dashboard' ? 'active' : '' }}" href="{{ url('/dashboard') }}">
+                <a class="{{ Request::segment(1)=='dashboard' ? 'active' : '' }}" href="{{ url('/dashboard') }}">
                     <i class="flaticon-024-dashboard"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
@@ -42,7 +42,7 @@
 
            
 
-            @if(Auth::user()->role == 'mps')
+            @if(Auth::check() && Auth::user()->role == 'mps')
            
             <li>
                 <a class="{{ Request::segment(1)=='daily-work' ? 'active' : '' }}"
@@ -51,21 +51,64 @@
                     <span class="nav-text">Daily Work</span>
                 </a>
             </li>
-             <li>
+            <li>
+                <a class="{{ Request::segment(1)=='company' ? 'active' : '' }}"
+                    href="{{ url('/company') }}">
+                    <i class="fa-solid fa-building fw-bold"></i>
+                    <span class="nav-text">Vendor Name</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Request::segment(1)=='contracts' ? 'active' : '' }}"
+                    href="{{ url('/contracts') }}">
+                    <i class="fa-solid fa-file-contract fw-bold"></i>
+                    <span class="nav-text">Contracts</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Request::segment(1)=='display' ? 'active' : '' }}"
+                    href="{{ route('display.login') }}" target="_blank">
+                    <i class="fa-solid fa-file-contract fw-bold"></i>
+                    <span class="nav-text">Table Display</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Request::segment(2)=='map' ? 'active' : '' }}"
+                    href="{{ url('/display/map') }}" target="_blank">
+                    <i class="fa-solid fa-file-contract fw-bold"></i>
+                    <span class="nav-text">Map Display</span>
+                </a>
+            </li>
+            <li>
                 <a class="{{ Request::segment(1)=='management-users' ? 'active' : '' }}"
                     href="{{ url('/management-users') }}">
                     <i class="fa-solid fa-user fw-bold"></i>
-                    <span class="nav-text">Management Users</span>
+                    <span class="nav-text">Users Management </span>
                 </a>
             </li>
             @endif
 
-            <li>
+            @if(Auth::check() && Auth::user()->role == 'vendor')
+                <li>
+                    <a class="{{ Request::segment(1)=='daily-work' ? 'active' : '' }}"
+                    href="{{ url('/daily-work') }}">
+                        <i class="fa-solid fa-helmet-safety fw-bold"></i>
+                        <span class="nav-text">Daily Work</span>
+                    </a>
+                </li>
+
+              
+            @endif
+
+             @if(Auth::check() && Auth::user()->role == 'display')
+             @endif
+
+            {{-- <li>
                 <a class="{{ Request::segment(1)=='pengaturan' ? 'active' : '' }}" href="{{ url('/pengaturan') }}">
                     <i class="fa-solid fa-gear fw-bold"></i>
                     <span class="nav-text">Pengaturan</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
         <div class="copyright">
             <p>Copyright ©  <a href="#" target="_blank">Integrated Terminal Balongan</a> {{

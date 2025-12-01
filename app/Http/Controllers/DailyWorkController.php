@@ -17,17 +17,37 @@ class DailyWorkController extends Controller
             $dailyWorks = DailyWork::with('user')->latest()->get();
             return datatables()->of($dailyWorks)
                 ->addIndexColumn()
-                ->addColumn('username', function ($dailyWork) {
-                    return $dailyWork->user->username;
-                })
+                // ->addColumn('username', function ($dailyWork) {
+                //     return $dailyWork->user->username;
+                // })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="' . route('daily-work.edit', $data->id) . '" title="Edit" tooltip="Edit" class="btn btn-warning btn-sm ms-2"><i class="fas fa-edit"></i></a>';
-                    $button .= '<a href="' . route('daily-work-item.index', ['dailyWork' => $data->id]) . '" title="Work Item" tooltip="Work Item" class="btn btn-info btn-sm ms-2"><i class="fas fa-arrow-right"></i></a>';
-                    // $button .= '<button type="button" title="Hapus" id="' . $data->id . '"  tooltip="Hapus" class="delete btn btn-danger btn-sm ms-2">
-                    //                 <i class="fas fa-trash"></i>
-                    //             </button>';
 
-                    return $button;
+                    $user = auth()->user();
+
+                    // Jika user tidak login → kosongkan action
+                    if (!$user) {
+                        return '';
+                    }
+
+                    $buttons = '';
+
+                    // Jika user bukan vendor → boleh edit
+                    if ($user->role !== 'vendor') {
+                        $buttons .= '<a href="' . route('daily-work.edit', $data->id) . '" 
+                        title="Edit" 
+                        class="btn btn-warning btn-sm ms-2">
+                        <i class="fas fa-edit"></i>
+                     </a>';
+                    }
+
+                    // Tombol Work Item → semua role boleh
+                    $buttons .= '<a href="' . route('daily-work-item.index', ['dailyWork' => $data->id]) . '" 
+                    title="Work Item" 
+                    class="btn btn-info btn-sm ms-2">
+                    <i class="fas fa-arrow-right"></i>
+                 </a>';
+
+                    return $buttons;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -41,6 +61,9 @@ class DailyWorkController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'mps') {
+            abort(403, 'Unauthorized');
+        }
         return view('pages.daily-work.create');
     }
 

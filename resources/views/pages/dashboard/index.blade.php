@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container-fluid mt-4">
-    <div class="row mb-4">
+    {{-- <div class="row mb-4">
         <div class="col">
             <h2 class="fw-bold">{{ $page_title }}</h2>
             <p class="text-muted mb-0">{{ $page_description }}</p>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Dashboard Content --}}
     <div class="row g-4">

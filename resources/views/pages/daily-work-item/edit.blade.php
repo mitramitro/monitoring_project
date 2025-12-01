@@ -138,7 +138,7 @@
                 <div class="card-header">Info</div>
                 <div class="card-body">
                     <p><strong>Daily Work:</strong> {{ optional($dailyWork)->date ?? '-' }}</p>
-                    <p><strong>Vendor:</strong> {{ optional($dailyWork->user)->username ?? '-' }}</p>
+                    {{-- <p><strong>Vendor:</strong> {{ optional($dailyWork->user)->username ?? '-' }}</p> --}}
                     <hr>
                     <p class="small text-muted">Jika ingin menambahkan beberapa rencana pekerjaan untuk hari yang sama, ulangi proses add item. Approval dilakukan oleh akun MPS.</p>
                 </div>

@@ -18,14 +18,27 @@ class DailyWorkItemController extends Controller
         $user = Auth::user();
 
         // Authorization: vendor hanya boleh melihat dailyWork miliknya
-        if ($user->role === 'vendor' && $dailyWork->user_id !== $user->id) {
-            abort(403, 'Unauthorized.');
-        }
+        // if ($user->role === 'vendor' && $dailyWork->user_id !== $user->id) {
+        //     abort(403, 'Unauthorized.');
+        // }
+        // if ($dailyWork->user->company_id !== $user->company_id) {
+        //     abort(403, 'Unauthorized - Daily Work bukan dari perusahaan Anda.');
+        // }
         // dd($dailyWork->id);
         if (request()->ajax()) {
             // eager load related contract and dailyWork->user
+            $user = auth()->user();
+            $role = $user->role ?? 'vendor';   // default vendor kalau null
+            $companyId = $user->company_id ?? null;
+
             $items = DailyWorkItem::with(['contract', 'dailyWork.user'])
                 ->where('daily_work_id', $dailyWork->id)
+                ->when($role === 'vendor', function ($q) use ($companyId) {
+                    // Vendor hanya bisa lihat data kontrak perusahannya sendiri
+                    $q->whereHas('contract', function ($qc) use ($companyId) {
+                        $qc->where('company_id', $companyId);
+                    });
+                })
                 ->latest();
             // dd($itemsQuery->toSql(), $itemsQuery->getBindings(), $itemsQuery->get());
 
@@ -57,19 +70,46 @@ class DailyWorkItemController extends Controller
                     };
                 })
                 ->addColumn('action', function ($item) use ($dailyWork) {
+
+                    // Aman untuk user null (session expired)
+                    $user = auth()->user();
+
+                    // Jika user tidak login → jangan tampilkan tombol apa pun
+                    if (!$user) {
+                        return '';
+                    }
+
+                    // Ambil role user (default: vendor)
+                    $role = $user->role ?? 'vendor';
+
                     $buttons = '';
 
-                    // Edit button (vendor dapat edit sebelum approval; mps juga bisa)
-                    $buttons .= '<a href="' . route('daily-work-item.edit', [$dailyWork->id, $item->id]) . '" class="btn btn-warning btn-sm ms-2 btn-edit-item" data-url="' . route('daily-work-item.edit', [$dailyWork->id, $item->id]) . '" title="Edit"><i class="fas fa-edit"></i></a>';
+                    // Semua user (vendor/admin) boleh edit
+                    $buttons .= '<a href="' . route('daily-work-item.edit', [$dailyWork->id, $item->id]) . '" 
+                    class="btn btn-warning btn-sm ms-2 btn-edit-item" 
+                    title="Edit">
+                    <i class="fas fa-edit"></i>
+                </a>';
 
-                    // Buttons: approve (only mps), delete (if allowed)
-                    $buttons .= '<button type="button" class="btn btn-danger btn-sm ms-2 btn-delete-item" data-id="' . $item->id . '" title="Delete"><i class="fas fa-trash"></i></button>';
+                    // Jika role admin / mps → tampilkan delete & approve
+                    if (in_array($role, ['admin', 'mps'])) {
 
-                    // Work Plan list link (assuming nested resource daily-work-item.plans)
-                    // $buttons .= '<a href="' . route('daily-work-item.plans.index', [$dailyWork->id, $item->id]) . '" class="btn btn-info btn-sm ms-2" title="Plans"><i class="fas fa-arrow-right"></i></a>';
+                        // Delete
+                        $buttons .= '<button type="button" 
+                        class="btn btn-danger btn-sm ms-2 btn-delete-item" 
+                        data-id="' . $item->id . '" 
+                        title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>';
 
-                    // Approve button (front-end will call approve endpoint)
-                    $buttons .= '<button type="button" class="btn btn-success btn-sm ms-2 btn-approve-item" data-id="' . $item->id . '" title="Approve"><i class="fas fa-check"></i></button>';
+                        // Approve
+                        $buttons .= '<button type="button" 
+                        class="btn btn-success btn-sm ms-2 btn-approve-item" 
+                        data-id="' . $item->id . '" 
+                        title="Approve">
+                        <i class="fas fa-check"></i>
+                    </button>';
+                    }
 
                     return $buttons;
                 })
@@ -85,9 +125,9 @@ class DailyWorkItemController extends Controller
     {
         // Authorization (opsional)
         $user = auth()->user();
-        if ($user->role === 'vendor' && $dailyWork->user_id !== $user->id) {
-            abort(403, 'Unauthorized.');
-        }
+        // if ($user->role === 'vendor' && $dailyWork->user_id !== $user->id) {
+        //     abort(403, 'Unauthorized.');
+        // }
 
         // Ambil contracts untuk dropdown
         // $contracts = Contract::orderBy('contract_number')->get();
@@ -117,9 +157,9 @@ class DailyWorkItemController extends Controller
         $dailyWork = DailyWork::findOrFail($request->daily_work_id);
 
         // Authorization: vendor only for their own dailyWork
-        if (auth()->user()->role === 'vendor' && $dailyWork->user_id !== auth()->id) {
-            abort(403, 'Unauthorized');
-        }
+        // if (auth()->user()->role === 'vendor' && $dailyWork->user_id !== auth()->id) {
+        //     abort(403, 'Unauthorized');
+        // }
         // store daily_work_item
         $data = $request->only([
             'daily_work_id',
@@ -164,16 +204,16 @@ class DailyWorkItemController extends Controller
         // }
 
         // Vendor hanya boleh edit miliknya sendiri
-        if ($user->role === 'vendor' && $dailyWork->user_id !== $user->id) {
-            abort(403, 'Unauthorized');
-        }
+        // if ($user->role === 'vendor' && $dailyWork->user_id !== $user->id) {
+        //     abort(403, 'Unauthorized');
+        // }
 
         // Ambil contracts + relasi company
         $contracts = Contract::with('company')
             ->when($user->role === 'vendor', function ($q) use ($user) {
                 $q->where('company_id', $user->company_id);
             })
-            ->where('status', 'active')
+            ->where('status', 'progress')
             ->get();
 
         return view('pages.daily-work-item.edit', compact('dailyWork', 'dailyWorkItem', 'contracts'));
@@ -187,9 +227,9 @@ class DailyWorkItemController extends Controller
 
 
         // Pastikan item belong ke dailyWork
-        if ($dailyWorkItem->daily_work_id !== $dailyWork->id) {
-            abort(404);
-        }
+        // if ($dailyWorkItem->daily_work_id !== $dailyWork->id) {
+        //     abort(404);
+        // }
 
         // Vendor hanya boleh edit miliknya sendiri
         if ($user->role === 'vendor' && $dailyWork->user_id !== $user->id) {

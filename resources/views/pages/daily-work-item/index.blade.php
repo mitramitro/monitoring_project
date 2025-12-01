@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h4 class="card-title">Daily Work Items — {{ optional($dailyWork)->date ?? '-' }} 
-                        <small class="text-muted">({{ optional($dailyWork->user)->username ?? '-' }})</small>
+                       <small class="text-muted">({{ optional(auth()->user())->username }})</small>
                     </h4>
 
                     <div>
@@ -50,15 +50,15 @@
                             <tfoot>
                                 <tr>
                                     <th>No</th>
-                                    <th>Contract</th>
+                                    <th>Job Title</th>
+                                    <th>Budget</th>
+                                    <th>Company Name</th>
                                     <th>Time In</th>
                                     <th>Time Out</th>
                                     <th>Overtime Plan</th>
-                                    <th>Is Absen</th>
-                                    <th>Absen Reason</th>
-                                    <th>Note</th>
                                     <th>Total Workers</th>
                                     <th>Approval</th>
+                                    <th>Absen Reason</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
@@ -115,13 +115,15 @@
     });
 
     // Example: handle click tombol edit/delete/approve via event delegation
-    $(document).on('click', '.btn-edit-item', function(e) {
-        e.preventDefault();
-        var url = $(this).data('url');
-        // redirect to edit page
-        window.location.href = url;
-    });
-
+    // $(document).on('click', '.btn-edit-item', function(e) {
+    //     e.preventDefault();
+    //     var url = $(this).data('url');
+    //     window.location.href = url;
+    // });
+// $(document).on('click', '.btn-edit-item', function(e) {
+//     e.preventDefault();
+//     window.location.href = $(this).attr('href');
+// });
     // Hapus item (jika butuh)
     // $(document).on('click', '.btn-delete-item', function(e) {
     //     e.preventDefault();

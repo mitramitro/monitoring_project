@@ -16,6 +16,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        if (request()->routeIs('display.login')) {
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+        }
         $page_title = 'Login';
         $page_description = 'Halaman Login';
         return view('pages.auth.login', compact('page_title', 'page_description'));
@@ -26,9 +31,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Auth::logout();
+        // $request->session()->invalidate();
+        // $request->session()->regenerateToken();
+
+        // Login baru
         $request->authenticate();
         $request->session()->regenerate();
-        return redirect()->intended(route('dashboard.index', absolute: false));
+
+        $user = auth()->user();
+
+        // Jika user role display → ke display
+        if ($user && $user->role === 'display') {
+            return redirect()->route('display');
+        }
+
+        // Selain display → ke dashboard
+        return redirect()->intended(route('dashboard.index'));
     }
 
     /**
@@ -36,10 +55,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Logout dua guard untuk keamanan
         Auth::guard('web')->logout();
+        // Auth::guard('display')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

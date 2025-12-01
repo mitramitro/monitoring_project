@@ -87,6 +87,27 @@ return [
 					'templateadmin/vendor/datatables/css/jquery.dataTables.min.css',
 					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.css',
 				],
+				'CompanyController_index' => [
+					'templateadmin/vendor/datatables/css/jquery.dataTables.min.css',
+					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.css',
+				],
+				'CompanyController_create' => [
+					'templateadmin/vendor/select2/css/select2.min.css',
+				],
+				'CompanyController_edit' => [
+					'templateadmin/vendor/select2/css/select2.min.css',
+				],
+
+				'ContractController_index' => [
+					'templateadmin/vendor/datatables/css/jquery.dataTables.min.css',
+					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.css',
+				],
+				'ContractController_create' => [
+					'templateadmin/vendor/select2/css/select2.min.css',
+				],
+				'ContractController_edit' => [
+					'templateadmin/vendor/select2/css/select2.min.css',
+				],
 
 
 
@@ -188,7 +209,6 @@ return [
 				],
 
 
-
 				'DailyWorkItemController_index' => [
 					'templateadmin/vendor/datatables/js/jquery.dataTables.min.js',
 					'templateadmin/js/plugins-init/datatables.init.js',
@@ -208,7 +228,32 @@ return [
 					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.js',
 				],
 
-
+				'CompanyController_index' => [
+					'templateadmin/vendor/datatables/js/jquery.dataTables.min.js',
+					'templateadmin/js/plugins-init/datatables.init.js',
+					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.js',
+				],
+				'CompanyController_create' => [
+					'templateadmin/vendor/select2/js/select2.full.min.js',
+					'templateadmin/js/plugins-init/select2-init.js',
+				],
+				'CompanyController_edit' => [
+					'templateadmin/vendor/select2/js/select2.full.min.js',
+					'templateadmin/js/plugins-init/select2-init.js',
+				],
+				'ContractController_index' => [
+					'templateadmin/vendor/datatables/js/jquery.dataTables.min.js',
+					'templateadmin/js/plugins-init/datatables.init.js',
+					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.js',
+				],
+				'ContractController_create' => [
+					'templateadmin/vendor/select2/js/select2.full.min.js',
+					'templateadmin/js/plugins-init/select2-init.js',
+				],
+				'ContractController_edit' => [
+					'templateadmin/vendor/select2/js/select2.full.min.js',
+					'templateadmin/js/plugins-init/select2-init.js',
+				],
 
 
 
