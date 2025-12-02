@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 // LOGIN
 //
 Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/', [AuthenticatedSessionController::class, 'store']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 //
