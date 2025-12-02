@@ -4,7 +4,7 @@
 <div class="row h-100">
 
     <div class="col-lg-6 col-md-12 col-sm-12 mx-auto align-self-center">
-        <div class="login-form">
+        <div class="login-form" style="background-color: white; 0 1%9box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); padding: 30px; border-radius:8px">
             <div class="text-center">
                 <img src="{{ asset('/templateadmin/images/logo-pertamina-patraniaga.png') }}"
                     style="width: 300px;margin-bottom: 20px" alt="">
@@ -37,7 +37,7 @@
             </form>
         </div>
     </div>
-    <div class="col-xl-6 col-lg-6">
+    {{-- <div class="col-xl-6 col-lg-6">
         <div class="pages-left h-100"
             style="background-image: url({{ asset('templateadmin/images/background-login.png') }}); background-repeat:no-repeat; background-size:cover;">
             <div class="login-content">
@@ -47,7 +47,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
 
