@@ -33,36 +33,6 @@
                             >
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">PIC</label>
-                            <input 
-                                type="text" 
-                                name="pic" 
-                                class="form-control" 
-                                value="{{ $company->pic }}"
-                            >
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Safety Man</label>
-                            <input 
-                                type="text" 
-                                name="safety_man" 
-                                class="form-control" 
-                                value="{{ $company->safety_man }}"
-                            >
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Handphone</label>
-                            <input 
-                                type="text" 
-                                name="handphone" 
-                                class="form-control" 
-                                value="{{ $company->handphone }}"
-                            >
-                        </div>
-
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a href="{{ route('company.index') }}" class="btn btn-secondary">Back</a>
 

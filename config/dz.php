@@ -100,6 +100,7 @@ return [
 
 				'ContractController_index' => [
 					'templateadmin/vendor/datatables/css/jquery.dataTables.min.css',
+					'templateadmin/vendor/datatables/css/buttons.dataTables.min.css',
 					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.css',
 				],
 				'ContractController_create' => [
@@ -231,6 +232,8 @@ return [
 				'CompanyController_index' => [
 					'templateadmin/vendor/datatables/js/jquery.dataTables.min.js',
 					'templateadmin/js/plugins-init/datatables.init.js',
+
+
 					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.js',
 				],
 				'CompanyController_create' => [
@@ -245,6 +248,10 @@ return [
 					'templateadmin/vendor/datatables/js/jquery.dataTables.min.js',
 					'templateadmin/js/plugins-init/datatables.init.js',
 					'templateadmin/vendor/sweetalert2/dist/sweetalert2.min.js',
+					'templateadmin/vendor/datatables/js/dataTables.buttons.min.js',
+					'templateadmin/vendor/datatables/js/buttons.print.min.js',
+					'templateadmin/vendor/datatables/js/buttons.html5.min.js',
+					'templateadmin/vendor/datatables/js/jszip.min.js',
 				],
 				'ContractController_create' => [
 					'templateadmin/vendor/select2/js/select2.full.min.js',

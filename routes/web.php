@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('daily-work-item/{dailyWork}/{dailyWorkItem}', [DailyWorkItemController::class, 'destroy'])
         ->name('daily-work-item.destroy');
 
+    // Route PDF (custom route)
+    Route::get('/daily-work/{id}/pdf', [DailyWorkController::class, 'pdf'])
+        ->name('daily-work.pdf');
     Route::resource('daily-work', DailyWorkController::class);
     Route::resource('company', CompanyController::class);
     Route::resource('contracts', \App\Http\Controllers\ContractController::class);

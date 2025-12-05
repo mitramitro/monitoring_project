@@ -40,6 +40,19 @@
                 </div>
 
                 <div class="mb-3">
+                    <label>PIC</label>
+                    <input type="text" name="pic" value="{{ $contract->pic }}" class="form-control">    
+                </div>
+                <div class="mb-3">
+                    <label>Safety Man</label>
+                    <input type="text" name="safety_man" value="{{ $contract->safety_man }}" class="form-control">
+                </div>  
+                <div class="mb-3">
+                    <label>Handphone</label>
+                    <input type="text" name="handphone" value="{{ $contract->handphone }}" class="form-control">    
+                </div>
+
+                <div class="mb-3">
                     <label>Status</label>
                     <select name="status" class="form-control" required>
                         <option value="progress" {{ $contract->status == 'progress' ? 'selected' : '' }}>Progress</option>

@@ -17,21 +17,14 @@ class UsersSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Sabur Hidayat',
-                'username' => 'sabur',
-                'email' => 'sabur@mps.local',
+                'name' => 'Maintenance planning service',
+                'username' => 'mps',
+                'email' => 'mps@mps.local',
                 'password' => Hash::make('password123'),
                 'role' => 'mps',
                 'company_id' => 1, // MPS Balongan
             ],
-            [
-                'name' => 'Budi Santoso',
-                'username' => 'vendor1',
-                'email' => 'vendor1@test.local',
-                'password' => Hash::make('password123'),
-                'role' => 'vendor',
-                'company_id' => 2, // PT. Test
-            ],
+
         ];
         foreach ($users as $user) {
             User::create($user);

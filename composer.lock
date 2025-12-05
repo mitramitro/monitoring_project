@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "83e81f468e469bad34576399796a9089",
+    "content-hash": "a7ca5f9209c854b039ca274d49936ece",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -63,14 +63,9 @@
         {
             "name": "barryvdh/laravel-dompdf",
             "version": "v3.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/laravel-dompdf.git",
-                "reference": "8e71b99fc53bb8eb77f316c3c452dd74ab7cb25d"
-            },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/8e71b99fc53bb8eb77f316c3c452dd74ab7cb25d",
+                "url": "https://mirrors.cloud.tencent.com/repository/composer/barryvdh/laravel-dompdf/v3.1.1/barryvdh-laravel-dompdf-v3.1.1.zip",
                 "reference": "8e71b99fc53bb8eb77f316c3c452dd74ab7cb25d",
                 "shasum": ""
             },
@@ -105,7 +100,6 @@
                     "Barryvdh\\DomPDF\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -125,16 +119,6 @@
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
                 "source": "https://github.com/barryvdh/laravel-dompdf/tree/v3.1.1"
             },
-            "funding": [
-                {
-                    "url": "https://fruitcake.nl",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/barryvdh",
-                    "type": "github"
-                }
-            ],
             "time": "2025-02-13T15:07:54+00:00"
         },
         {

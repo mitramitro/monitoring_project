@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('contract_number');
             $table->string('budget')->nullable();
             $table->string('job_title');
+            $table->string('pic')->nullable();
+            $table->string('safety_man')->nullable();
+            $table->string('handphone')->nullable();
             $table->foreignId('company_id')
                 ->constrained('companies')
                 ->cascadeOnDelete();

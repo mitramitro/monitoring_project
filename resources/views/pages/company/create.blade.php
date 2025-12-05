@@ -39,30 +39,6 @@
                                    required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="pic" class="form-label">PIC</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="pic" 
-                                   name="pic">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="safety_man" class="form-label">Safety Man</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="safety_man" 
-                                   name="safety_man">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="handphone" class="form-label">Handphone</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="handphone" 
-                                   name="handphone">
-                        </div>
-
                         <button type="submit" class="btn btn-success">Submit</button>
 
                     </form>

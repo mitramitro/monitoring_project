@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 text-end">
                             @if(auth()->check() && auth()->user()->role === 'mps')
                                 <a href="{{ route('daily-work.create') }}" class="btn btn-primary mb-3">
                                     Add Daily Work

@@ -20,11 +20,49 @@
         .gm-control-active, .gmnoprint, .gm-style-cc {
             display: none !important;
         }
+
+       /* Buttons */
+        .header-buttons {
+            display: flex;
+            gap: 12px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 9999;
+        }
+
+        .btn-header {
+            padding: 10px 18px;
+            font-size: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-map {
+            background: #1f3723;
+        }
+
+        .btn-logout {
+            background: #b91c1c;
+        }
     </style>
 
 </head>
 <body>
 {{-- @dd($items); --}}
+<div class="header-buttons">
+        <a href="{{ route('display') }}" class="btn-header btn-map">TABEL</a>
+
+        <a href="{{ route('logout') }}"
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+           class="btn-header btn-logout">
+            LOGOUT
+        </a>
+</div>
 <div id="map" style="height: 100vh; width: 100%;"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVO8sQvPqRrCTLrRluyyPW8HW2waJke88&libraries=places"></script>
 

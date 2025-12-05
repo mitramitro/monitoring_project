@@ -16,17 +16,9 @@ class CompanySeeder extends Seeder
     {
         $companies = [
             [
-                'name' => 'MPS Balongan',
-                'pic' => 'Sabur Hidayat',
-                'safety_man' => null,
-                'handphone' => '08345345345',
+                'name' => 'PT. Pertamina Patra Niaga',
             ],
-            [
-                'name' => 'PT. Test',
-                'pic' => 'Budi Santoso',
-                'safety_man' => null,
-                'handphone' => null,
-            ],
+
         ];
         Company::insert($companies);
     }

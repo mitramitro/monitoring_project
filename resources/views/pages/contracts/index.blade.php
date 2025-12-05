@@ -36,6 +36,9 @@
                                 <th>Company</th>
                                 <th>Job Title</th>
                                 <th>Budget</th>
+                                <th>PIC</th>
+                                <th>Safety Man</th>
+                                <th>Handphone</th>
                                 <th>Status</th>
                                 <th width="120px">Action</th>
                             </tr>
@@ -65,8 +68,32 @@ $(function() {
             { data: 'company_name', name: 'company_name' },
             { data: 'job_title', name: 'job_title' },
             { data: 'budget', name: 'budget' },
+            { data: 'pic', name: 'pic' },
+            { data: 'safety_man', name: 'safety_man' },
+            { data: 'handphone', name: 'handphone' },
             { data: 'status', name: 'status' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
+        ],
+        columnDefs: [
+        { width: "5%",  targets: 0 },
+        { width: "15%", targets: 1 },
+        { width: "15%", targets: 2 },
+        { width: "15%", targets: 3 },
+        { width: "8%", targets: 4 },
+        { width: "10%", targets: 5 },
+        { width: "10%", targets: 6 },
+        { width: "10%", targets: 7 },
+        { width: "10%", targets: 8 },
+        { width: "8%", targets: 9 },
+    ],
+    // Tambahan untuk tombol export
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Contracts Data',
+                text: 'Export Excel'
+            }
         ]
     });
 

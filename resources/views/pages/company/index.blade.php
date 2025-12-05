@@ -35,9 +35,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Company Name</th>
-                                    <th>PIC</th>
-                                    <th>Safety Man</th>
-                                    <th>Handphone</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -46,9 +43,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Company Name</th>
-                                    <th>PIC</th>
-                                    <th>Safety Man</th>
-                                    <th>Handphone</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
@@ -83,12 +77,9 @@
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
-            { data: 'pic', name: 'pic' },
-            { data: 'safety_man', name: 'safety_man' },
-            { data: 'handphone', name: 'handphone' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
-        columnDefs: [{ width: '20%', targets: 5 }],
+        columnDefs: [{ width: '20%', targets: 2 }],
         language: {
             paginate: {
                 next: '<i class="fa fa-angle-double-right"></i>',
